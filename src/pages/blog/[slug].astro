@@ -1,6 +1,7 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
 import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import Banner728x90 from '../../components/ads/Banner728x90.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -66,6 +67,8 @@ const ogImage = entry.data.image || '/og.png';
   </header>
 
   <Content />
+
+  <Banner728x90 />
 
   <div class="mt-12 pt-8 border-t border-border">
     <a

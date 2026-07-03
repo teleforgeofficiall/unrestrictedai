@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ImageGenerator from '../react/ImageGenerator';
 import RecentGenerations from '../react/RecentGenerations';
+import Banner300x250 from '../components/ads/Banner300x250.astro';
 ---
 
 <BaseLayout
@@ -21,6 +22,8 @@ import RecentGenerations from '../react/RecentGenerations';
 
       <ImageGenerator client:load />
     </div>
+
+    <Banner300x250 />
 
     <RecentGenerations client:load />
   </div>

@@ -7,6 +7,8 @@ import FAQ from '../components/sections/FAQ.astro';
 import CTA from '../components/sections/CTA.astro';
 import SEOContent from '../components/sections/SEOContent.astro';
 import QuickLinks from '../components/sections/QuickLinks.astro';
+import Banner728x90 from '../components/ads/Banner728x90.astro';
+import NativeBanner from '../components/ads/NativeBanner.astro';
 ---
 
 <BaseLayout
@@ -14,10 +16,14 @@ import QuickLinks from '../components/sections/QuickLinks.astro';
   description="Best free AI image generator no restrictions. Create uncensored NSFW AI images with no filter, no login, and unlimited generations. The ultimate AI image generator without censorship for adults. Start now — no sign-up needed."
 >
   <Hero />
+  <Banner728x90 />
   <Features />
+  <NativeBanner />
   <Gallery />
   <FAQ />
   <SEOContent />
+  <NativeBanner />
   <QuickLinks />
+  <Banner728x90 />
   <CTA />
 </BaseLayout>
