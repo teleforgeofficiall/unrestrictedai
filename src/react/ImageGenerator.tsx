@@ -91,6 +91,29 @@ export default function ImageGenerator() {
     } catch {}
   }, [history]);
 
+  const AD_KEY = '6b97b58bf5a14cdb611470f92f6d47d0';
+
+  useEffect(() => {
+    if (!result) return;
+    const container = document.getElementById('ad-container-300x250');
+    if (!container) return;
+    container.innerHTML = '';
+    (window as any).atOptions = {
+      key: AD_KEY,
+      format: 'iframe',
+      height: 250,
+      width: 300,
+      params: {},
+    };
+    const script = document.createElement('script');
+    script.src = `https://www.highperformanceformat.com/${AD_KEY}/invoke.js`;
+    script.async = true;
+    container.appendChild(script);
+    return () => {
+      container.innerHTML = '';
+    };
+  }, [result]);
+
   const handleGenerate = useCallback(async () => {
     setLoading(true);
     setError('');
@@ -206,7 +229,7 @@ export default function ImageGenerator() {
       </div>
 
       {result && (
-        <div class="space-y-4">
+        <><div class="space-y-4">
           <div class="flex items-center justify-between">
             <h2 class="text-xl font-semibold">Generated Image</h2>
             <button
@@ -300,7 +323,11 @@ export default function ImageGenerator() {
             </div>
           </div>
         </div>
-      )}
+
+        <div class="flex justify-center">
+          <div id="ad-container-300x250" />
+        </div>
+      </>)}
 
       {history.length > 0 && (
         <div class="space-y-4">
