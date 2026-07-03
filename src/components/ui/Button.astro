@@ -1,0 +1,38 @@
+---
+export interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  as?: 'button' | 'a';
+  href?: string;
+  class?: string;
+}
+
+const { size = 'md', variant = 'primary', as = 'button', href } = Astro.props;
+
+const base = 'inline-flex items-center justify-center font-semibold rounded-2xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
+
+const sizes = {
+  sm: 'px-4 py-2 text-sm gap-2',
+  md: 'px-6 py-3 text-base gap-2',
+  lg: 'px-8 py-4 text-lg gap-3',
+};
+
+const variants = {
+  primary: 'bg-primary text-primary-foreground hover:opacity-90 shadow-sm hover:shadow-md',
+  secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+  outline: 'border border-border bg-transparent hover:bg-accent',
+  ghost: 'bg-transparent hover:bg-accent',
+};
+---
+
+{
+  as === 'a' ? (
+    <a href={href} class:list={[base, sizes[size], variants[variant], Astro.props.class]}>
+      <slot />
+    </a>
+  ) : (
+    <button class:list={[base, sizes[size], variants[variant], Astro.props.class]}>
+      <slot />
+    </button>
+  )
+}

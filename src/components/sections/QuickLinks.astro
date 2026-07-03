@@ -1,0 +1,69 @@
+---
+const links = [
+  {
+    href: '/about',
+    title: 'About Us',
+    description: 'Learn about our mission to provide the best free unrestricted AI image generation platform for everyone.',
+    icon: 'info',
+  },
+  {
+    href: '/contact',
+    title: 'Contact Us',
+    description: 'Have questions or feedback? Get in touch with our team for support and inquiries.',
+    icon: 'mail',
+  },
+  {
+    href: '/privacy',
+    title: 'Privacy Policy',
+    description: 'Understand how we protect your privacy and handle your data when using our AI image generator.',
+    icon: 'shield',
+  },
+  {
+    href: '/terms',
+    title: 'Terms of Service',
+    description: 'Review the terms and conditions governing your use of our unrestricted AI image generation service.',
+    icon: 'document',
+  },
+  {
+    href: '/faq',
+    title: 'FAQ',
+    description: 'Find answers to common questions about our free AI image generator with no restrictions.',
+    icon: 'help',
+  },
+  {
+    href: '/disclaimer',
+    title: 'Disclaimer',
+    description: 'Read our disclaimer regarding the use of our uncensored AI image generation platform.',
+    icon: 'alert',
+  },
+];
+---
+
+<section class="border-t border-border bg-muted/30">
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+    <div class="text-center mb-10 sm:mb-12">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-balance mb-4">
+        Learn More About <span class="gradient-text">UnrestrictedAI</span>
+      </h2>
+      <p class="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
+        Explore our platform, policies, and mission. We believe in free, uncensored AI image generation for everyone.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class="group rounded-3xl border border-border bg-card p-5 sm:p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+        >
+          <h3 class="text-base sm:text-lg font-semibold mb-2 group-hover:text-brand transition-colors">
+            {link.title}
+          </h3>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            {link.description}
+          </p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

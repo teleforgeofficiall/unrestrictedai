@@ -1,0 +1,36 @@
+---
+import { SITE } from '../../lib/constants';
+
+export interface Props {
+  type?: 'WebSite' | 'Organization' | 'BreadcrumbList';
+  breadcrumbs?: { name: string; url: string }[];
+}
+
+const { type = 'WebSite', breadcrumbs } = Astro.props;
+
+function getSchema() {
+  if (type === 'BreadcrumbList' && breadcrumbs) {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbs.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: `${SITE.url}${item.url}`,
+      })),
+    };
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': type,
+    name: SITE.name,
+    description: SITE.description,
+    url: SITE.url,
+    image: `${SITE.url}${SITE.ogImage}`,
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(getSchema())} />

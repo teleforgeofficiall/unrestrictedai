@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ImageGenerator from '../react/ImageGenerator';
+import RecentGenerations from '../react/RecentGenerations';
+---
+
+<BaseLayout
+  title="NSFW AI Image Generator No Restrictions - Free 18+ AI Image Generator"
+  description="Best NSFW AI image generator no restrictions. Create uncensored 18+ AI images with no filter, no login, and unlimited generations. Free AI image generator for adults — no censorship, no limits."
+>
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-8 sm:mb-10">
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-balance mb-4">
+          <span class="gradient-text">AI Image Generator</span>
+        </h1>
+        <p class="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+          Describe your vision and let AI bring it to life. No restrictions, no limits, no login required.
+        </p>
+      </div>
+
+      <ImageGenerator client:load />
+    </div>
+
+    <RecentGenerations client:load />
+  </div>
+</BaseLayout>

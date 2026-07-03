@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'About', url: '/about' },
+];
+---
+
+<BaseLayout
+  title="About Us - AI Image Generator No Restrictions &amp; Uncensored AI"
+  description="Learn about our mission to provide the best free AI image generator no restrictions. We believe in uncensored AI image generation without filters for everyone."
+>
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div class="max-w-3xl mx-auto">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-balance mb-6">
+        About <span class="gradient-text">UnrestrictedAI</span>
+      </h1>
+
+      <div class="space-y-6 sm:space-y-8 text-muted-foreground leading-relaxed">
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4">Our Mission</h2>
+          <p>
+            We believe AI creativity should be accessible to everyone, without barriers, restrictions, or costs. Our mission is to provide the most powerful, unrestricted AI image generation platform that is completely free and anonymous to use. As the leading AI image generator no restrictions, we empower creators to bring any vision to life without censorship or limitations.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4">Why We Started</h2>
+          <p>
+            Most AI image generators impose limits on generations, require sign-ups, or censor creative content. We built UnrestrictedAI to offer an alternative where creativity has no boundaries. No login, no limits, no censorship. Our platform was created to fill the gap for a truly free AI image generator no restrictions that respects creative freedom above all else.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4">What We Offer</h2>
+          <ul class="list-disc pl-5 sm:pl-6 space-y-1.5 sm:space-y-2">
+            <li>Completely free AI image generation — no hidden costs or credit systems</li>
+            <li>No login or account required — instant anonymous access</li>
+            <li>Unlimited generations — no daily caps or rate limits</li>
+            <li>Uncensored content creation — no filters or moderation</li>
+            <li>Multiple categories including NSFW and adult content</li>
+            <li>No data collection or tracking of your personal information</li>
+            <li>Mobile-friendly interface optimized for all devices</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4">Why Choose UnrestrictedAI?</h2>
+          <p>
+            There are many AI image generators available, but none offer the complete freedom of UnrestrictedAI. We are the only platform that combines truly unlimited free usage, zero registration requirements, and absolutely no content filters. Whether you are an artist exploring new styles, a writer visualizing characters, or an adult content creator, our AI image generator no restrictions provides the tools you need without asking for anything in return.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4">Our Values</h2>
+          <ul class="list-disc pl-5 sm:pl-6 space-y-1.5 sm:space-y-2">
+            <li><strong>Freedom:</strong> No restrictions on creative expression — generate any content you desire</li>
+            <li><strong>Accessibility:</strong> Free for everyone, everywhere, with no barriers to entry</li>
+            <li><strong>Privacy:</strong> Anonymous usage, no data collection, no tracking, no accounts</li>
+            <li><strong>Quality:</strong> High-quality AI models for professional-grade results</li>
+            <li><strong>Transparency:</strong> Clear policies, no hidden terms, honest about our capabilities</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="mt-10 sm:mt-12 text-center">
+        <Button as="a" href="/generate" size="lg">
+          Start Creating Free
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+          </svg>
+        </Button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

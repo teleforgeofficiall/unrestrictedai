@@ -1,0 +1,80 @@
+---
+import { SITE, TOOLS } from '../lib/constants';
+---
+
+<footer class="border-t border-border bg-muted/50">
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12">
+      <div class="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1">
+        <a href="/" class="flex items-center gap-2.5 mb-4">
+          <img src="/logo.png" alt="{SITE.shortName}" class="h-8 w-auto" />
+          <span class="text-lg font-bold tracking-tight">{SITE.shortName}</span>
+        </a>
+        <p class="text-sm text-muted-foreground max-w-xs">
+          Free, unrestricted AI image generation. Create stunning images from text with no limits.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-sm mb-4">Pages</h3>
+        <ul class="space-y-3">
+          <li><a href="/" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Home</a></li>
+          <li><a href="/generate" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Generate</a></li>
+
+          <li><a href="/tools" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Tools</a></li>
+          <li><a href="/blog" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Blog</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-sm mb-4">Tools</h3>
+        <ul class="space-y-3">
+          {TOOLS.slice(0, 6).map((tool) => (
+            <li>
+              <a href={`/tools/${tool.slug}`} class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {tool.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-sm mb-4">More Tools</h3>
+        <ul class="space-y-3">
+          {TOOLS.slice(6, 12).map((tool) => (
+            <li>
+              <a href={`/tools/${tool.slug}`} class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {tool.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-sm mb-4">Company</h3>
+        <ul class="space-y-3">
+          <li><a href="/about" class="text-sm text-muted-foreground hover:text-foreground transition-colors">About</a></li>
+          <li><a href="/blog" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Blog</a></li>
+          <li><a href="/faq" class="text-sm text-muted-foreground hover:text-foreground transition-colors">FAQ</a></li>
+          <li><a href="/contact" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Contact</a></li>
+          <li><a href="/privacy" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Privacy</a></li>
+          <li><a href="/terms" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Terms</a></li>
+          <li><a href="/disclaimer" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
+        &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
+      </p>
+      <div class="flex items-center gap-3 sm:gap-4">
+        <a href="/privacy" class="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors">Privacy</a>
+        <a href="/terms" class="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors">Terms</a>
+        <a href="/disclaimer" class="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>

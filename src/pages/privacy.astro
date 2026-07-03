@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Privacy Policy', url: '/privacy' },
+];
+---
+
+<BaseLayout
+  title="Privacy Policy - AI Image Generator No Restrictions"
+  description="Our privacy policy for the best free AI image generator no restrictions. We prioritize your privacy with anonymous NSFW AI image generation and no data collection."
+>
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div class="max-w-3xl mx-auto">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-balance mb-6 sm:mb-8">
+        Privacy Policy
+      </h1>
+
+      <div class="space-y-5 sm:space-y-6 text-muted-foreground leading-relaxed">
+        <p>Last updated: January 2026</p>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">1. Introduction</h2>
+          <p>UnrestrictedAI is committed to protecting your privacy. This policy explains how we handle your information when you use our AI image generation service. We believe in minimal data collection and maximum transparency. As a free AI image generator no restrictions, we prioritize your anonymity above all else.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">2. Information We Collect</h2>
+          <p>We collect minimal information to provide and improve our service:</p>
+          <ul class="list-disc pl-5 sm:pl-6 mt-2 space-y-1">
+            <li><strong>Text prompts:</strong> The categories you select for image generation are processed in real-time and are not permanently stored</li>
+            <li><strong>Generated images:</strong> Images are generated on-demand and cached temporarily for delivery; they are not stored on our servers after delivery</li>
+            <li><strong>Basic analytics:</strong> We may collect anonymized usage data such as page views and feature usage to improve our platform</li>
+            <li><strong>Technical information:</strong> Your IP address may be processed temporarily for routing and security purposes but is not logged or stored</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">3. How We Use Your Information</h2>
+          <ul class="list-disc pl-5 sm:pl-6 space-y-1">
+            <li>To generate images from your selected categories</li>
+            <li>To deliver generated images back to your browser</li>
+            <li>To improve our service quality and user experience</li>
+            <li>To maintain and secure our platform against abuse</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">4. Data Storage and Retention</h2>
+          <p>Your prompts and generated images are processed in real-time. We do not permanently store:</p>
+          <ul class="list-disc pl-5 sm:pl-6 mt-2 space-y-1">
+            <li>Your prompts or selected categories after image generation</li>
+            <li>Generated images after they have been delivered to your browser</li>
+            <li>Personal identification information (we do not collect names, emails, or account details)</li>
+          </ul>
+          <p class="mt-2">We do not sell, trade, rent, or share your data with third parties. Your usage of our AI image generator no restrictions remains completely anonymous.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">5. Cookies</h2>
+          <p>We use minimal cookies essential for the functioning of our service. Specifically:</p>
+          <ul class="list-disc pl-5 sm:pl-6 mt-2 space-y-1">
+            <li>A theme preference cookie to remember your dark/light mode choice</li>
+            <li>Essential session cookies required for technical operation</li>
+          </ul>
+          <p class="mt-2">We do not use tracking cookies, advertising cookies, or third-party analytics cookies that collect personal data. You can use our AI image generator no restrictions with confidence that your browsing activity is not being tracked.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">6. Third-Party Services</h2>
+          <p>Our AI image generation uses external APIs to process your requests. These third-party services are bound by strict confidentiality agreements and are instructed not to retain your data. We only use reputable service providers who maintain high privacy standards.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">7. Children's Privacy</h2>
+          <p>Our service is not intended for individuals under the age of 18. We do not knowingly collect any information from minors. If you are a parent or guardian and believe your child has used our service, please contact us immediately so we can address the issue.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">8. Changes to This Policy</h2>
+          <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated revision date. We encourage you to review this policy periodically to stay informed about how we are protecting your privacy.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">9. Contact</h2>
+          <p>If you have any questions about this privacy policy or our data practices, please visit our <a href="/contact" class="text-brand hover:underline">Contact page</a> or email us directly at support@unrestrictedai.vercel.app.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

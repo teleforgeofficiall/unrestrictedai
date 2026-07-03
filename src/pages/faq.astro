@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import { FAQ_ITEMS } from '../lib/constants';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'FAQ', url: '/faq' },
+];
+---
+
+<BaseLayout
+  title="FAQ - AI Image Generator No Restrictions &amp; Free NSFW AI"
+  description="Frequently asked questions about our free AI image generator no restrictions. Learn about NSFW AI image generation, no login required, and uncensored AI art."
+>
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div class="max-w-3xl mx-auto">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <div class="text-center mb-12">
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-balance mb-4">
+          Frequently Asked <span class="gradient-text">Questions</span>
+        </h1>
+        <p class="text-base sm:text-lg text-muted-foreground">
+          Everything you need to know about our AI image generator.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        {FAQ_ITEMS.map((item) => (
+          <details class="group rounded-2xl border border-border bg-card overflow-hidden transition-all duration-200 open:shadow-sm">
+            <summary class="flex items-center justify-between p-5 cursor-pointer text-base font-medium hover:bg-muted/50 transition-colors [&::-webkit-details-marker]:hidden">
+              {item.question}
+              <svg class="w-5 h-5 text-muted-foreground shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
+              </svg>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
+              {item.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center p-8 rounded-3xl border border-border bg-card">
+        <h2 class="text-xl font-semibold mb-2">Still have questions?</h2>
+        <p class="text-muted-foreground mb-4">We're here to help.</p>
+        <a
+          href="/contact"
+          class="inline-flex items-center px-6 py-3 bg-brand text-white font-semibold rounded-2xl hover:opacity-90 transition-all duration-200"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

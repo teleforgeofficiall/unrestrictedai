@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/ui/Card.astro';
+import { TOOLS } from '../../lib/constants';
+---
+
+<BaseLayout
+  title="Free AI Image Generator Tools - No Restrictions &amp; Unlimited"
+  description="Explore our collection of free AI image generator tools with no restrictions. Generate images in any style with no filter, no login, and unlimited access. The best free AI image generator tools online."
+>
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div class="text-center mb-16">
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-balance mb-4">
+          <span class="gradient-text">AI Tools</span>
+        </h1>
+        <p class="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+        Free, unrestricted AI image generation tools for every creative need.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {TOOLS.map((tool) => (
+        <Card as="a" href={`/tools/${tool.slug}`}>
+          <div class="w-10 h-10 rounded-2xl bg-brand/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z" />
+            </svg>
+          </div>
+          <h2 class="text-lg font-semibold mb-2">{tool.title}</h2>
+          <p class="text-sm text-muted-foreground">{tool.description}</p>
+        </Card>
+      ))}
+    </div>
+
+    <div class="mt-20 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-balance mb-4">
+        Why Use Our AI Tools?
+      </h2>
+      <p class="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
+        All our AI tools are completely free, require no login, and have no usage limits.
+        Generate anything you can imagine with cutting-edge AI technology.
+      </p>
+      <a
+        href="/generate"
+        class="inline-flex items-center px-6 py-3 bg-brand text-white font-semibold rounded-2xl hover:opacity-90 transition-all duration-200 shadow-sm hover:shadow-md gap-2"
+      >
+        Start Creating Free
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

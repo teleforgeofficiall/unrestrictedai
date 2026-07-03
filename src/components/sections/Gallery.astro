@@ -1,0 +1,54 @@
+---
+const galleryImages = [
+  { src: '/gallery/blowjob.png', alt: 'AI generated blowjob image showcase', label: 'Blowjob' },
+  { src: '/gallery/cuckold.jpg', alt: 'AI generated cuckold image showcase', label: 'Cuckold' },
+  { src: '/gallery/milf.jpg', alt: 'AI generated milf image showcase', label: 'Milf' },
+  { src: '/gallery/pussy.jpg', alt: 'AI generated pussy image showcase', label: 'Pussy' },
+  { src: '/gallery/yuri.jpg', alt: 'AI generated yuri image showcase', label: 'Yuri' },
+];
+---
+
+<section class="py-16 md:py-24 bg-muted/30">
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 sm:mb-16">
+      <h2 class="text-2xl sm:text-5xl font-bold tracking-tight text-balance mb-4">
+        Recent Generations
+      </h2>
+      <p class="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+        See what others are creating with our unrestricted AI image generator.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+      {galleryImages.map((img) => (
+        <div class="group relative rounded-3xl overflow-hidden border border-border bg-card aspect-square">
+          <img
+            src={img.src}
+            alt={img.alt}
+            loading="lazy"
+            class="w-full h-full object-cover scale-105"
+            style="filter: blur(16px)"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          <div class="absolute bottom-3 left-3">
+            <span class="text-xs font-medium text-foreground bg-background/30 backdrop-blur-sm px-2.5 py-1 rounded-full">
+              {img.label}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-10">
+      <a
+        href="/generate"
+        class="inline-flex items-center px-6 py-3 bg-brand text-white font-semibold rounded-2xl hover:opacity-90 transition-all duration-200 shadow-sm hover:shadow-md gap-2"
+      >
+        Create Your Own
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

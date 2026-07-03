@@ -1,0 +1,354 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { TOOLS } from '../../lib/constants';
+
+export interface Props {
+  tool: (typeof TOOLS)[number];
+}
+
+export async function getStaticPaths() {
+  return TOOLS.map((tool) => ({
+    params: { slug: tool.slug },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props;
+const slug = tool.slug;
+
+function getToolContent(slug: string) {
+  const content: Record<string, { heading: string; body: string; examples: string[]; faq: { q: string; a: string }[] }> = {
+    'ai-image-generator': {
+      heading: 'Generate Any Image You Imagine',
+      body: 'Our AI image generator transforms your text descriptions into stunning visuals. With no content restrictions and unlimited generations, you can create anything you can imagine. Simply describe what you want, choose your style, and let our AI bring your vision to life.',
+      examples: [
+        'A photorealistic portrait of a cyberpunk detective in rain-soaked Tokyo streets',
+        'An oil painting of a mystical forest with glowing bioluminescent creatures',
+        'A 3D render of a futuristic sports car on a neon-lit highway at night',
+      ],
+      faq: [
+        { q: 'How does the AI image generator work?', a: 'You type a text description (prompt), select your preferred style and aspect ratio, and our AI generates matching images in seconds.' },
+        { q: 'Are there any content restrictions?', a: 'No. Our generator has no content restrictions. You can create any type of image you want.' },
+        { q: 'Can I use the generated images commercially?', a: 'Yes, you own all rights to images you generate. Use them anywhere, including commercial projects.' },
+      ],
+    },
+    'ai-photo-generator': {
+      heading: 'Create Photorealistic Images with AI',
+      body: 'Generate stunning photorealistic images that look like they were taken with a professional camera. Perfect for marketing materials, concept visualization, and creative projects. Our AI understands lighting, composition, and photorealistic rendering.',
+      examples: [
+        'A professional headshot of a CEO in a modern glass office, natural lighting',
+        'A macro photograph of a dew-covered spider web at sunrise, shallow depth of field',
+        'An aerial view of a tropical beach resort, crystal clear water, golden hour',
+      ],
+      faq: [
+        { q: 'What makes a photo look realistic?', a: 'Details like proper lighting, realistic textures, accurate shadows, and natural color grading make AI photos look authentic.' },
+        { q: 'Can I generate product photos?', a: 'Yes. Describe your product and setting, and our AI will create professional-looking product photos.' },
+        { q: 'What aspect ratios work best for photos?', a: '3:2 and 4:3 are traditional photo ratios, but you can use any aspect ratio our generator supports.' },
+      ],
+    },
+    'ai-art-generator': {
+      heading: 'Transform Text into Digital Artwork',
+      body: 'Create stunning digital artwork from any description. Whether you want abstract compositions, surreal landscapes, or beautiful illustrations, our AI art generator brings your creative vision to life with professional-grade quality.',
+      examples: [
+        'A surrealist painting of melting clocks in a desert landscape, Salvador Dali style',
+        'Abstract geometric patterns in vibrant neon colors, digital art, 8K',
+        'A fantasy landscape with floating islands and waterfalls cascading into the clouds',
+      ],
+      faq: [
+        { q: 'What art styles are available?', a: 'We support realistic, anime, illustration, fantasy, cyberpunk, oil painting, 3D render, and pixel art styles.' },
+        { q: 'Can I generate art in specific artist styles?', a: 'Yes, mention the artist or art movement in your prompt for style-specific results.' },
+        { q: 'How detailed can the artwork be?', a: 'Our AI generates high-quality images with intricate details suitable for digital display and printing.' },
+      ],
+    },
+    'ai-avatar-generator': {
+      heading: 'Design Unique AI Avatars',
+      body: 'Create custom avatars for social media, gaming, or professional profiles. Describe your ideal avatar and our AI will generate unique, high-quality avatars in any style you choose.',
+      examples: [
+        'A cartoon avatar of a wizard with a long white beard and starry robes',
+        'A realistic 3D avatar of a futuristic soldier with cybernetic enhancements',
+        'A pixel art avatar of a knight with a shining sword and shield',
+      ],
+      faq: [
+        { q: 'Can I generate avatars for commercial use?', a: 'Yes, all generated avatars can be used commercially without attribution.' },
+        { q: 'What styles work best for avatars?', a: 'Anime, illustration, and 3D render styles are popular choices for unique avatars.' },
+        { q: 'Are the avatars unique?', a: 'Each generation creates unique images based on your specific prompt, ensuring your avatar is one-of-a-kind.' },
+      ],
+    },
+    'ai-anime-generator': {
+      heading: 'Generate Beautiful Anime Art',
+      body: 'Create stunning anime-style artwork with our specialized AI generator. From character designs to scenic backgrounds, generate any anime art you can imagine in popular anime art styles.',
+      examples: [
+        'A magical girl transforming under the moonlight, sparkles and ribbons flowing, anime style',
+        'A samurai standing on a mountain peak at sunset, wind blowing through cherry blossom petals',
+        'A cute chibi version of a dragon tamer with a baby dragon on their shoulder',
+      ],
+      faq: [
+        { q: 'Can I generate specific anime characters?', a: 'You can describe original characters or character archetypes. For existing IP characters, we recommend creating original designs.' },
+        { q: 'What anime art styles can I choose?', a: 'Select the anime style from our style selector, and add specific references like Studio Ghibli, Shonen, or others in your prompt.' },
+        { q: 'Can I create anime backgrounds?', a: 'Yes, describe the scene and setting you want, and our AI will generate matching anime-style backgrounds.' },
+      ],
+    },
+    'ai-logo-generator': {
+      heading: 'Design Professional AI Logos',
+      body: 'Create unique, professional logos for your brand or business. Describe your brand identity, preferred style, and let our AI generate logo concepts that capture your vision.',
+      examples: [
+        'A minimal tech startup logo with a geometric mountain peak, blue and white color scheme',
+        'A luxury fashion brand logo with elegant serif typography and a gold crown emblem',
+        'A gaming studio logo with a stylized dragon head, bold colors, and shield shape',
+      ],
+      faq: [
+        { q: 'Can I get the logo in different formats?', a: 'Download your generated logo as a high-resolution image suitable for web and print use.' },
+        { q: 'What styles work best for logos?', a: 'Illustration and 3D render styles work well for logos. Keep your prompt focused on your brand identity.' },
+        { q: 'Can I use the logo for my business?', a: 'Yes, you own all rights to generated logos and can use them for any commercial purpose.' },
+      ],
+    },
+    'ai-tattoo-generator': {
+      heading: 'Create Custom AI Tattoo Designs',
+      body: 'Design unique tattoo artwork with AI. Describe your tattoo idea, preferred style, and placement, and our AI will generate custom tattoo designs that ink artists can bring to life.',
+      examples: [
+        'A neo-traditional compass rose with roses and geometric patterns, black and grey shading',
+        'A minimalist line art tattoo of a mountain range with a small sun, fine line style',
+        'A watercolor style phoenix rising from flames, vibrant reds and oranges blending together',
+      ],
+      faq: [
+        { q: 'Are tattoo designs unique?', a: 'Yes, each generation creates unique designs based on your specific prompt.' },
+        { q: 'Can I modify generated tattoo designs?', a: 'Use the regenerate feature or refine your prompt to get variations of your tattoo design.' },
+        { q: 'What styles work for tattoo designs?', a: 'Illustration, realistic, and fantasy styles work great for tattoo concepts. Specify traditional, neo-traditional, watercolor, or other styles in your prompt.' },
+      ],
+    },
+    'ai-background-generator': {
+      heading: 'Generate Stunning AI Backgrounds',
+      body: 'Create beautiful backgrounds for websites, presentations, social media, or digital art. Generate unlimited unique backgrounds in any style, color scheme, or theme you need.',
+      examples: [
+        'A gradient abstract background with flowing waves in purple and teal, modern design',
+        'A dark cyberpunk cityscape background with neon signs reflecting on wet streets',
+        'A pastel gradient background with floating geometric shapes and soft shadows',
+      ],
+      faq: [
+        { q: 'What resolutions are available?', a: 'Download backgrounds in high resolution suitable for web and print use.' },
+        { q: 'Can I create seamless patterns?', a: 'Describe the pattern you want and our AI will generate it. For perfectly seamless patterns, mention "seamless" in your prompt.' },
+        { q: 'What styles work best for backgrounds?', a: 'Any style works. Choose based on your project needs - minimal for websites, detailed for art projects.' },
+      ],
+    },
+    'ai-portrait-generator': {
+      heading: 'Create AI-Generated Portraits',
+      body: 'Generate stunning portraits in any style. From realistic professional headshots to fantasy character portraits, describe your subject and let AI create the perfect portrait.',
+      examples: [
+        'A Renaissance-style portrait of a noblewoman in a velvet dress, golden lighting',
+        'A futuristic cyberpunk portrait of a hacker with glowing neon implants and goggles',
+        'An ethereal fantasy portrait of an elf queen with a crown of flowers and moonlight',
+      ],
+      faq: [
+        { q: 'Can I create realistic portraits?', a: 'Yes, select the realistic style for photorealistic portrait results.' },
+        { q: 'What styles are available for portraits?', a: 'All our styles work great for portraits. Each style creates a unique artistic interpretation.' },
+        { q: 'Can I specify age, gender, or features?', a: 'Yes, describe your subject in detail including age, features, expression, clothing, and setting.' },
+      ],
+    },
+    'ai-wallpaper-generator': {
+      heading: 'Generate Beautiful AI Wallpapers',
+      body: 'Create custom wallpapers for your phone, desktop, or tablet. Generate stunning visual art optimized for any screen size with your preferred colors and themes.',
+      examples: [
+        'A cosmic galaxy wallpaper with swirling nebulas in purple and pink, stars scattered across',
+        'A minimalist landscape wallpaper with a lone tree on a hill, misty morning atmosphere',
+        'A vibrant anime-style wallpaper featuring a city street at sunset, warm golden tones',
+      ],
+      faq: [
+        { q: 'What aspect ratio should I use for wallpapers?', a: 'Use 9:16 for phones, 16:9 for desktops, and 4:3 for tablets.' },
+        { q: 'Can I create matching wallpaper sets?', a: 'Use similar prompts with the same style to create cohesive wallpaper collections.' },
+        { q: 'How do I download wallpapers?', a: 'Click the download button on your generated image to save it in full resolution.' },
+      ],
+    },
+    'ai-character-generator': {
+      heading: 'Design Unique AI Characters',
+      body: 'Create original characters for stories, games, or art projects. Describe your character\'s appearance, personality, and world, and our AI will bring them to visual life.',
+      examples: [
+        'A steampunk inventor with goggles, leather apron, and mechanical arm, workshop background',
+        'A mysterious forest spirit with antlers made of branches, glowing blue eyes, ethereal',
+        'A space bounty hunter in customized armor with a high-tech blaster, alien planet backdrop',
+      ],
+      faq: [
+        { q: 'Can I generate character sheets?', a: 'Describe multiple views or expressions in your prompt. You can generate different poses and iterate.' },
+        { q: 'What styles work for character design?', a: 'Illustration, anime, and 3D render styles are excellent for character design and concept art.' },
+        { q: 'Can I create characters for commercial projects?', a: 'Yes, you own all rights to generated characters and can use them in commercial projects.' },
+      ],
+    },
+    'ai-sticker-generator': {
+      heading: 'Create Custom AI Stickers',
+      body: 'Design unique stickers for messaging, social media, or print. Create cute, funny, or artistic sticker designs with AI in any style you choose.',
+      examples: [
+        'A cute kawaii cat sticker with big sparkly eyes and a heart, pastel colors',
+        'A retro vaporwave sticker with a sunset grid and glowing neon text, 80s aesthetic',
+        'A funny sloth sticker wearing a party hat and holding a coffee cup, cartoon style',
+      ],
+      faq: [
+        { q: 'Can I create sticker packs?', a: 'Generate individual stickers with consistent styles and themes to build your own sticker pack.' },
+        { q: 'What style works best for stickers?', a: 'Illustration and anime styles with simple, bold designs work best for stickers.' },
+        { q: 'Are stickers print-ready?', a: 'Download images in high resolution suitable for both digital use and printing.' },
+      ],
+    },
+    'ai-meme-generator': {
+      heading: 'Generate Hilarious AI Memes',
+      body: 'Create custom memes with AI-generated images. Describe your meme idea, and our AI will generate the perfect image for your meme caption.',
+      examples: [
+        'A surprised cat wearing a business suit, sitting at a desk, looking at papers, funny expression',
+        'A dramatic painting of a dog judging two people, classical art style, humorous scene',
+        'A chaotic raccoon in a lab coat conducting experiments, explosion in background, cartoon',
+      ],
+      faq: [
+        { q: 'Can I add text to memes?', a: 'Generate the image with our AI, then add your own text using any image editing tool.' },
+        { q: 'What styles work for memes?', a: 'Realistic and illustration styles work well for meme images. Funny expressions and situations work best.' },
+        { q: 'Can I use meme images commercially?', a: 'Yes, you own rights to all generated images and can use them anywhere.' },
+      ],
+    },
+    'ai-coloring-page-generator': {
+      heading: 'Create Printable AI Coloring Pages',
+      body: 'Generate custom coloring pages for kids or adults. Describe any scene or character, and our AI will create a beautiful line-art coloring page ready to print.',
+      examples: [
+        'A detailed mandala coloring page with intricate geometric patterns and floral designs',
+        'A cute forest animals coloring page with a bear, rabbit, and fox, simple line art',
+        'An enchanted castle coloring page with towers, dragons, and knights, detailed outlines',
+      ],
+      faq: [
+        { q: 'Are coloring pages print-ready?', a: 'Yes, download generated images and print them directly for coloring.' },
+        { q: 'Can I create coloring pages for commercial sale?', a: 'Yes, you own all rights and can sell coloring pages created with our generator.' },
+        { q: 'What makes a good coloring page?', a: 'Clear outlines, distinct sections, and appropriate detail level for the intended age group.' },
+      ],
+    },
+  };
+
+  return content[slug] || {
+    heading: `Generate ${tool.title.replace('AI ', '').replace(' Generator', '')} with AI`,
+    body: `Use our free AI ${tool.slug.replace('ai-', '').replace(/-/g, ' ')} tool to create stunning results. No login required, unlimited generations.`,
+    examples: [
+      `Try creating your own ${tool.title.replace('AI ', '').toLowerCase()} today`,
+      `Describe your ideal ${tool.slug.replace('ai-', '')}`,
+      `Generate unlimited ${tool.title.replace('AI ', '').toLowerCase()}s`,
+    ],
+    faq: [
+      { q: `How does the ${tool.title} work?`, a: 'Simply describe what you want, select your style preferences, and our AI generates it in seconds.' },
+      { q: 'Is it really free?', a: 'Yes, completely free with no limits and no login required.' },
+      { q: 'Can I use generated images commercially?', a: 'Yes, you own all rights to images you generate.' },
+    ],
+  };
+}
+
+const content = getToolContent(slug);
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Tools', url: '/tools' },
+  { name: tool.title, url: `/tools/${slug}` },
+];
+---
+
+<BaseLayout
+  title={`${tool.title} - Free & Uncensored AI Image Generator Tool`}
+  description={`${tool.description}. Free unlimited access with no login required. Use our AI image generator no restrictions for ${tool.title.toLowerCase()} creation.`}
+  canonical={`https://unrestrictedai.vercel.app/tools/${slug}`}
+>
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center mx-auto mb-6">
+          <svg class="w-7 h-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z" />
+          </svg>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-balance mb-4">
+          <span class="gradient-text">{tool.title}</span>
+        </h1>
+        <p class="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+          {content.body}
+        </p>
+        <a
+          href={`/generate?tool=${slug}`}
+          class="inline-flex items-center px-6 py-3 bg-brand text-white font-semibold rounded-2xl hover:opacity-90 transition-all duration-200 shadow-sm hover:shadow-md gap-2"
+        >
+          Create {tool.title.replace('AI ', '')}
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <section class="mb-16">
+        <h2 class="text-xl sm:text-3xl font-bold tracking-tight mb-4 sm:mb-6">{content.heading}</h2>
+        <p class="text-muted-foreground mb-6 sm:mb-8 leading-relaxed">{content.body}</p>
+
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold">Example Prompts</h3>
+          <div class="space-y-3">
+            {content.examples.map((example) => (
+              <a
+                href={`/generate?prompt=${encodeURIComponent(example)}`}
+                class="block p-4 rounded-2xl border border-border bg-card hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200"
+              >
+                <div class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-brand mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                  </svg>
+                  <span class="text-sm">{example}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-16">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-8">Frequently Asked Questions</h2>
+        <div class="space-y-3">
+          {content.faq.map((item) => (
+            <details class="group rounded-2xl border border-border bg-card overflow-hidden transition-all duration-200 open:shadow-sm">
+              <summary class="flex items-center justify-between p-5 cursor-pointer text-base font-medium hover:bg-muted/50 transition-colors [&::-webkit-details-marker]:hidden">
+                {item.q}
+                <svg class="w-5 h-5 text-muted-foreground shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
+                </svg>
+              </summary>
+              <div class="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
+                {item.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section class="text-center rounded-3xl bg-gradient-to-br from-brand/5 via-purple-500/5 to-indigo-500/5 border border-border p-8 md:p-12">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
+          Ready to Create?
+        </h2>
+        <p class="text-muted-foreground mb-6 max-w-xl mx-auto">
+          Start generating now. Free, unlimited, and no login required.
+        </p>
+        <a
+          href={`/generate?tool=${slug}`}
+          class="inline-flex items-center px-6 py-3 bg-brand text-white font-semibold rounded-2xl hover:opacity-90 transition-all duration-200 shadow-sm hover:shadow-md gap-2"
+        >
+          Get Started Free
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+          </svg>
+        </a>
+      </section>
+
+      <section class="mt-12 sm:mt-16">
+        <h2 class="text-xl sm:text-3xl font-bold tracking-tight mb-4 sm:mb-6">Related Tools</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {TOOLS.filter((t) => t.slug !== slug).slice(0, 6).map((related) => (
+            <a
+              href={`/tools/${related.slug}`}
+              class="p-4 rounded-2xl border border-border bg-card hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <h3 class="font-semibold text-sm mb-1">{related.title}</h3>
+              <p class="text-xs text-muted-foreground">{related.description}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

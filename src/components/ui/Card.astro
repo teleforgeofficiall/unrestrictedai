@@ -1,0 +1,30 @@
+---
+export interface Props {
+  class?: string;
+  hover?: boolean;
+  glass?: boolean;
+  as?: 'div' | 'a';
+  href?: string;
+}
+
+const { class: className, hover = true, glass = false, as = 'div', href } = Astro.props;
+
+const base = 'rounded-3xl border shadow-sm transition-all duration-300';
+const hoverStyles = hover ? 'hover:shadow-lg hover:-translate-y-0.5' : '';
+const glassStyles = glass ? 'glass-card' : 'bg-card';
+---
+
+{
+  as === 'a' ? (
+    <a
+      href={href}
+      class:list={[base, hoverStyles, glassStyles, 'p-6', className]}
+    >
+      <slot />
+    </a>
+  ) : (
+    <div class:list={[base, hoverStyles, glassStyles, 'p-6', className]}>
+      <slot />
+    </div>
+  )
+}

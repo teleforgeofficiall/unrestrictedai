@@ -1,0 +1,16 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#09090b"/>
+  <rect x="1" y="1" width="1198" height="628" rx="20" fill="url(#grad)" fill-opacity="0.12" stroke="#27272a" stroke-width="2"/>
+  <circle cx="200" cy="100" r="250" fill="url(#grad)" opacity="0.08"/>
+  <circle cx="1000" cy="500" r="300" fill="url(#grad)" opacity="0.06"/>
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <text x="600" y="260" font-family="system-ui, sans-serif" font-size="68" font-weight="bold" fill="#fafafa" text-anchor="middle" dominant-baseline="middle">AI Image Generator</text>
+  <text x="600" y="330" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#818cf8" text-anchor="middle" dominant-baseline="middle">No Restrictions • Free &amp; Unlimited</text>
+  <text x="600" y="400" font-family="system-ui, sans-serif" font-size="22" fill="#a1a1aa" text-anchor="middle" dominant-baseline="middle">Uncensored AI Image Generation • No Login • No Filter</text>
+</svg>
